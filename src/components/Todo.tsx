@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 
 export const Todo = () => {
   return (
@@ -27,7 +27,7 @@ export const Todo = () => {
         </ul>
       </div>
       <div>
-        <p>完了のToDo</p>{" "}
+        <p>完了のToDo</p>
         <ul>
           <li>
             <div>
