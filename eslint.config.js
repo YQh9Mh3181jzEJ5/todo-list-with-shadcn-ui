@@ -22,6 +22,7 @@ export default [
       react,
       "react-hooks": reactHooks,
       "react-refresh": reactRefresh,
+      "@typescript-eslint": typescript,
     },
     rules: {
       ...js.configs.recommended.rules,
@@ -33,6 +34,7 @@ export default [
         "warn",
         { allowConstantExport: true },
       ],
+      ...typescript.configs.recommended.rules,
     },
   },
 ];

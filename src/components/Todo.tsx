@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+
 export const Todo = () => {
   return (
     <div>
@@ -11,8 +13,8 @@ export const Todo = () => {
           <li>
             <div>
               <p>ToDo</p>
-              <button>完了</button>
-              <button>削除</button>
+              <Button>完了</Button>
+              <Button>削除</Button>
             </div>
           </li>
           <li>
