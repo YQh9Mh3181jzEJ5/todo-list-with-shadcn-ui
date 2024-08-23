@@ -1,14 +1,15 @@
-import { Button } from '@/components/ui';
 import { TodoInput } from '@/features/todos/components';
 
-export const Footer = () => {
+interface FooterProps {
+  onAddTodo: (text: string) => void;
+  todos: { text: string }[];
+}
+
+export const Footer = ({ onAddTodo, todos }: FooterProps) => {
   return (
     <footer className="bg-card shadow-sm ">
       <div className="container max-w-4xl pt-4 ">
-        <form className="flex items-center gap-4">
-          <TodoInput />
-          <Button type="submit">Add Todo</Button>
-        </form>
+        <TodoInput onAddTodo={onAddTodo} todos={todos} />
       </div>
       <div className="py-4">
         <p className="text-center text-xs font-light text-gray-400">

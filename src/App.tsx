@@ -1,37 +1,19 @@
 import { Header, Footer } from '@/components/layouts';
-import { CompleteTodoList, ActiveTodoList } from '@/features/todos/components';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { TodoTabs } from '@/features/todos/components';
+import { useTodos } from './features/todos/hooks';
 
 const App = () => {
+  const { todos, addTodo, toggleTodo, deleteTodo } = useTodos();
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow flex justify-center">
         <div className="container max-w-4xl">
-          <Tabs defaultValue="Active">
-            <div className="my-4">
-              <TabsList className="inline-flex w-full h-16">
-                <TabsTrigger value="Active" className="flex-1 h-full text-lg">
-                  Active
-                </TabsTrigger>
-                <TabsTrigger value="Completed" className="flex-1 h-full text-lg">
-                  Completed
-                </TabsTrigger>
-              </TabsList>
-            </div>
-            <div className="my-4">
-              <TabsContent value="Active">
-                <ActiveTodoList />
-              </TabsContent>
-              <TabsContent value="Completed">
-                <CompleteTodoList />
-              </TabsContent>
-            </div>
-          </Tabs>
+          <TodoTabs todos={todos} onToggleTodo={toggleTodo} deleteTodo={deleteTodo} />
         </div>
       </main>
-
-      <Footer />
+      <Footer onAddTodo={addTodo} todos={todos} />
     </div>
   );
 };

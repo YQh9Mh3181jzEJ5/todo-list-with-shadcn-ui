@@ -1,12 +1,25 @@
+import { Todo } from '../types/todo';
 import { TodoItem } from './TodoItem';
-
-export const CompleteTodoList = (): JSX.Element => {
+interface TodoListProps {
+  todos: Todo[];
+  onToggleTodo: (id: string) => void;
+  onDeleteTodo: (id: string) => void;
+}
+export const CompleteTodoList = ({
+  todos,
+  onToggleTodo,
+  onDeleteTodo,
+}: TodoListProps): JSX.Element => {
   return (
     <div className="space-y-4">
-      <TodoItem />
-      <TodoItem />
-      <TodoItem />
-      <TodoItem />
+      {todos.map((todo) => (
+        <TodoItem
+          key={todo.id}
+          todo={todo}
+          onToggle={() => onToggleTodo(todo.id)}
+          onDelete={() => onDeleteTodo(todo.id)}
+        />
+      ))}
     </div>
   );
 };
