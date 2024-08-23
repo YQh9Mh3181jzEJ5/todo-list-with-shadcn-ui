@@ -19,12 +19,14 @@ const App = () => {
                 </TabsTrigger>
               </TabsList>
             </div>
-            <TabsContent value="Active">
-              <ActiveTodoList />
-            </TabsContent>
-            <TabsContent value="Completed">
-              <CompleteTodoList />
-            </TabsContent>
+            <div className="my-4">
+              <TabsContent value="Active">
+                <ActiveTodoList />
+              </TabsContent>
+              <TabsContent value="Completed">
+                <CompleteTodoList />
+              </TabsContent>
+            </div>
           </Tabs>
         </div>
       </main>
