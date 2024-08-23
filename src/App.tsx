@@ -1,7 +1,15 @@
+import { Header, Footer } from '@/layouts';
+import { CompleteTodoList, IncompleteTodoList } from '@/features/todos/components';
+
 const App = () => {
   return (
-    <div>
-      <h1>Hello, TypeScript!</h1>
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      <main className="flex-grow">
+        <IncompleteTodoList />
+        <CompleteTodoList />
+      </main>
+      <Footer />
     </div>
   );
 };
