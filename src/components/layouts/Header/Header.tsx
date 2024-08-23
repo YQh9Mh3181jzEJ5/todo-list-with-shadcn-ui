@@ -1,7 +1,5 @@
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { BellIcon } from '@/components/icons/BellIcon';
-import { SettingsIcon } from '@/components/icons/SettingsIcon';
 import {
   DropdownMenu,
   DropdownMenuTrigger,

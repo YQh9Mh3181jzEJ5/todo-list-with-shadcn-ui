@@ -10,10 +10,11 @@ interface TodoListProps {
 export const TodoList = ({ todos, onToggleTodo, onDeleteTodo }: TodoListProps): JSX.Element => {
   return (
     <div className="space-y-4">
-      {todos.map((todo) => (
+      {todos.map((todo, index) => (
         <TodoItem
           key={todo.id}
           todo={todo}
+          index={index + 1}
           onToggle={() => onToggleTodo(todo.id)}
           onDelete={() => onDeleteTodo(todo.id)}
         />

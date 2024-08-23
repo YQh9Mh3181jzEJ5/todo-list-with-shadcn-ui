@@ -18,5 +18,8 @@ export const useTodos = () => {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
   };
 
-  return { todos, addTodo, toggleTodo, deleteTodo };
+  const activeTodosCount = todos.filter((todo) => !todo.completed).length;
+  const completedTodosCount = todos.filter((todo) => todo.completed).length;
+
+  return { todos, addTodo, toggleTodo, deleteTodo, activeTodosCount, completedTodosCount };
 };
