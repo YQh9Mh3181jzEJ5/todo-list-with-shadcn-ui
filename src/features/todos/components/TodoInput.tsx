@@ -3,15 +3,12 @@ import { MAX_TODO_LENGTH } from '@/constants';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { IoSend } from 'react-icons/io5';
+import { useTodos } from '../hooks';
 
-interface TodoInputProps {
-  onAddTodo: (text: string) => void;
-  todos: { text: string }[];
-}
-
-export const TodoInput = ({ onAddTodo, todos }: TodoInputProps) => {
+export const TodoInput = () => {
   const [inputValue, setInputValue] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
+  const { todos, addTodo } = useTodos();
 
   const handleAddTodo = () => {
     const trimmedValue = inputValue.trim();
@@ -31,7 +28,7 @@ export const TodoInput = ({ onAddTodo, todos }: TodoInputProps) => {
       return;
     }
 
-    onAddTodo(trimmedValue);
+    addTodo(trimmedValue);
     setInputValue('');
     setError(null);
   };

@@ -1,5 +1,5 @@
 import { CheckedIcon, TrashIcon } from '@/components/icons';
-import { Button, Card, CardContent, Checkbox } from '@/components/ui';
+import { Button, Card, CardContent } from '@/components/ui';
 import { Todo } from '../types/todo';
 interface TodoItemProps {
   todo: Todo;

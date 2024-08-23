@@ -1,15 +1,11 @@
 import { TodoInput } from '@/features/todos/components';
+import { useTodos } from '@/features/todos/hooks';
 
-interface FooterProps {
-  onAddTodo: (text: string) => void;
-  todos: { text: string }[];
-}
-
-export const Footer = ({ onAddTodo, todos }: FooterProps) => {
+export const Footer = () => {
   return (
     <footer className="bg-card shadow-sm ">
       <div className="container max-w-4xl pt-4 ">
-        <TodoInput onAddTodo={onAddTodo} todos={todos} />
+        <TodoInput />
       </div>
       <div className="py-4">
         <p className="text-center text-xs font-light text-gray-400">
