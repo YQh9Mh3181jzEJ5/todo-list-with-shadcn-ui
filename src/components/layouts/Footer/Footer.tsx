@@ -1,5 +1,4 @@
 import { TodoInput } from '@/features/todos/components';
-import { useTodos } from '@/features/todos/hooks';
 
 export const Footer = () => {
   return (
