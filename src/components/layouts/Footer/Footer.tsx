@@ -1,14 +1,13 @@
-import { Button, Input } from '@/components/ui';
+import { Button } from '@/components/ui';
+import { TodoInput } from '@/features/todos/components';
 
 export const Footer = () => {
   return (
-    <footer className="bg-card shadow bg-slate-200">
-      <div className="container mx-auto max-w-4xl">
-        <form className="flex items-center h-24 py-4 gap-4">
-          <Input type="text" placeholder="Add a new todo..." className="h-full te" />
-          <Button type="submit" className="w-24 h-full">
-            Add
-          </Button>
+    <footer className="bg-card shadow">
+      <div className="container max-w-4xl mx-auto py-4">
+        <form className="flex items-center gap-4">
+          <TodoInput />
+          <Button type="submit">Add Todo</Button>
         </form>
       </div>
     </footer>
