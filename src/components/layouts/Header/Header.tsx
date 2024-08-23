@@ -68,7 +68,6 @@ export const Header = () => {
               <DropdownMenuItem onClick={() => setTheme('system')}>System</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-          ;
         </div>
       </div>
     </header>

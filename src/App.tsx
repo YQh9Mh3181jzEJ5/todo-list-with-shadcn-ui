@@ -7,7 +7,7 @@ const App = () => {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow flex justify-center">
-        <div className="w-full max-w-3xl">
+        <div className="container max-w-4xl">
           <Tabs defaultValue="Active">
             <div className="my-4">
               <TabsList className="inline-flex w-full h-16">
