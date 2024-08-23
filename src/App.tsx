@@ -1,4 +1,4 @@
-import { Header, Footer } from '@/layouts';
+import { Header, Footer } from '@/components/layouts';
 import { CompleteTodoList, IncompleteTodoList } from '@/features/todos/components';
 
 const App = () => {

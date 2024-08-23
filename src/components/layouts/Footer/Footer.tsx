@@ -1,5 +1,4 @@
-import { Input } from '../components/ui/input';
-import { Button } from '../components/ui/button';
+import { Button, Input } from '@/components/ui';
 
 export const Footer = () => {
   return (
