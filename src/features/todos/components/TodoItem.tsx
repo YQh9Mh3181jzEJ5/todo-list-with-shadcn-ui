@@ -9,11 +9,8 @@ interface TodoItemProps {
 
 export const TodoItem = ({ todo, onToggle, onDelete }: TodoItemProps): JSX.Element => {
   return (
-    <Card>
-      <CardContent
-        className="grid grid-cols-[1fr_auto_auto] items-center gap-2
-       p-4"
-      >
+    <Card className="hover:cursor-pointer dark:hover:bg-slate-800 hover:bg-slate-50 dark:border-slate-600">
+      <CardContent className="grid grid-cols-[1fr_auto_auto] items-center gap-2 p-4">
         <span className="text-lg font-medium">{todo.text}</span>
         <Button
           variant="ghost"

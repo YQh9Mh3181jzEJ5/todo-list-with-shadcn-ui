@@ -13,33 +13,47 @@ import {
 import { VscAccount } from 'react-icons/vsc';
 import { FcTodoList } from 'react-icons/fc';
 import { FaSearch } from 'react-icons/fa';
-
 import { Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
+import { useTodos } from '@/features/todos/hooks';
+import { useState } from 'react';
+import { SearchResults } from '@/features/todos/components';
 
 export const Header = () => {
   const { setTheme } = useTheme();
+  const { todos } = useTodos();
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [showResults, setShowResults] = useState<boolean>(false);
+
+  const filteredTodos = todos.filter((todo) =>
+    todo.text.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <header className="bg-card shadow">
       <div className="container flex items-center justify-between px-4 py-3 ">
+        {/* ロゴ */}
         <a href="/" className="flex items-center gap-2">
           <FcTodoList className="w-6 h-6" />
           <span className="text-lg font-bold ">Todo App</span>
         </a>
+        {/* Todoの検索 */}
         <div className="relative flex-1 max-w-md mx-4">
           <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 z-10" />
-          <Input type="search" placeholder="Search todos..." className="pl-10 pr-4 rounded-md" />
+          <Input
+            type="search"
+            placeholder="Search todos..."
+            className="pl-10 pr-4 rounded-md"
+            value={searchTerm}
+            onChange={(event) => {
+              setSearchTerm(event.target.value);
+              setShowResults(event.target.value !== '');
+            }}
+          />
+          {showResults && searchTerm && <SearchResults results={filteredTodos} />}
         </div>
+        {/* アイコン */}
         <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon">
-            <SettingsIcon className="w-5 h-5" />
-            <span className="sr-only">Settings</span>
-          </Button>
-          <Button variant="ghost" size="icon">
-            <BellIcon className="w-5 h-5" />
-            <span className="sr-only">Notifications</span>
-          </Button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="icon">
