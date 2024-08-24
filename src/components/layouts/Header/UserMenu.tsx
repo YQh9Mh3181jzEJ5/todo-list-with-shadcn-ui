@@ -10,9 +10,9 @@ import {
 import { Sun, Moon } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { VscAccount } from 'react-icons/vsc';
-const { setTheme } = useTheme();
 
 export const UserMenu = () => {
+  const { setTheme } = useTheme();
   return (
     <div className="flex items-center gap-4">
       <DropdownMenu>
