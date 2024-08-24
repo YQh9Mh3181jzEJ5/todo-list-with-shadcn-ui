@@ -1,7 +1,7 @@
 import { Input } from '@/components/ui';
 import { MAX_TODO_LENGTH } from '@/constants';
 import { Button } from '@/components/ui/button';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { IoSend } from 'react-icons/io5';
 import { useTodos } from '../hooks';
 
@@ -10,21 +10,29 @@ export const TodoInput = () => {
   const [error, setError] = useState<string | null>(null);
   const { todos, addTodo } = useTodos();
 
+  const validateInput = useCallback(
+    (value: string) => {
+      const trimmedValue = value.trim();
+      if (!trimmedValue) {
+        return 'Todo cannot be empty';
+      }
+      if (trimmedValue.length > MAX_TODO_LENGTH) {
+        return `Character limit exceeded: ${trimmedValue.length}/${MAX_TODO_LENGTH}. Please shorten your todo.`;
+      }
+      if (todos.some((todo) => todo.text === trimmedValue)) {
+        return 'This todo already exists';
+      }
+      return null;
+    },
+    [todos]
+  );
+
   const handleAddTodo = () => {
     const trimmedValue = inputValue.trim();
+    const validationError = validateInput(trimmedValue);
 
-    if (!trimmedValue) {
-      setError('Todo cannot be empty');
-      return;
-    }
-
-    if (trimmedValue.length > MAX_TODO_LENGTH) {
-      setError(`Todo must be ${MAX_TODO_LENGTH} characters or less`);
-      return;
-    }
-
-    if (todos.some((todo) => todo.text === trimmedValue)) {
-      setError('This todo already exists');
+    if (validationError) {
+      setError(validationError);
       return;
     }
 
@@ -38,30 +46,57 @@ export const TodoInput = () => {
     handleAddTodo();
   };
 
+  const handleInputChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const newValue = event.target.value;
+      setInputValue(newValue);
+      setError(validateInput(newValue));
+    },
+    [validateInput]
+  );
+
+  // const hasError = error !== '';
+  // const isInputEmpty = inputValue.trim() === '';
+
   return (
-    <form onSubmit={handleSubmit} className="relative flex-grow">
-      <Input
-        type="text"
-        placeholder="Add a new todo..."
-        className="pl-4 pr-16 py-8 text-lg"
-        value={inputValue}
-        onChange={(event) => {
-          setInputValue(event.target.value);
-          setError(null);
-        }}
-        maxLength={MAX_TODO_LENGTH}
-      />
-      <Button
-        type="button"
-        variant="ghost"
-        size="icon"
-        className="absolute right-8 top-1/2 -translate-y-1/2"
-        onClick={handleAddTodo}
-        aria-label="Add todo"
-      >
-        <IoSend className=" text-muted-foreground h-4 w-4" />{' '}
-      </Button>
-      {error && <p className="text-red-500 mt-2">{error}</p>}
-    </form>
+    <div className="relative">
+      <form onSubmit={handleSubmit} className="relative flex-grow">
+        <Input
+          type="text"
+          placeholder="Add a new todo..."
+          className="pl-4 pr-32
+           py-8 text-lg truncate"
+          value={inputValue}
+          onChange={handleInputChange}
+          maxLength={MAX_TODO_LENGTH}
+        />
+        <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center space-x-2 bg-background">
+          <p
+            className={`text-sm ${
+              inputValue.length > MAX_TODO_LENGTH ? 'text-red-500' : 'text-gray-500'
+            }`}
+          >
+            {inputValue.length}/{MAX_TODO_LENGTH}
+          </p>
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            onClick={handleAddTodo}
+            aria-label="Add todo"
+            // disabled={hasError || isInputEmpty}
+            className="disabled:cursor-not-allowed"
+          >
+            <IoSend className="text-muted-foreground h-4 w-4" />
+          </Button>
+        </div>
+
+        {error && (
+          <p className="text-red-500 text-sm absolute left-2 bottom-0 transform translate-y-[calc(100%+0.5rem)]">
+            {error}
+          </p>
+        )}
+      </form>
+    </div>
   );
 };
