@@ -1,4 +1,6 @@
-export const BellIcon = (props: any) => {
+import { SVGProps } from '@/types';
+
+export const BellIcon = (props: SVGProps) => {
   return (
     <svg
       {...props}

@@ -4,6 +4,8 @@ import { useTodos } from '@/features/todos/hooks';
 import { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 
+
+
 export const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [showResults, setShowResults] = useState<boolean>(false);

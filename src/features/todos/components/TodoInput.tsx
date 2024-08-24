@@ -1,3 +1,4 @@
+import React from 'react';
 import { Input } from '@/components/ui';
 import { MAX_TODO_LENGTH } from '@/constants';
 import { Button } from '@/components/ui/button';
@@ -41,7 +42,7 @@ export const TodoInput = () => {
     setError(null);
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     handleAddTodo();
   };

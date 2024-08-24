@@ -1,4 +1,6 @@
-export const SettingsIcon = (props: any) => {
+import { SVGProps } from '@/types';
+
+export const SettingsIcon = (props: SVGProps) => {
   return (
     <svg
       {...props}

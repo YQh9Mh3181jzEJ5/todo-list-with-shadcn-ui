@@ -1,4 +1,6 @@
-export const CheckedIcon = (props: any) => {
+import { SVGProps } from '@/types';
+
+export const CheckedIcon = (props: SVGProps) => {
   return (
     <svg
       {...props}

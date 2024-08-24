@@ -7,18 +7,16 @@ interface TodoListProps {
   onDeleteTodo: (id: string) => void;
 }
 
-export const TodoList = ({ todos, onToggleTodo, onDeleteTodo }: TodoListProps) => {
-  return (
-    <div className="space-y-4">
-      {todos.map((todo, index) => (
-        <TodoItem
-          key={todo.id}
-          todo={todo}
-          index={index + 1}
-          onToggle={() => onToggleTodo(todo.id)}
-          onDelete={() => onDeleteTodo(todo.id)}
-        />
-      ))}
-    </div>
-  );
-};
+export const TodoList = ({ todos, onToggleTodo, onDeleteTodo }: TodoListProps) => (
+  <div className="space-y-4">
+    {todos.map((todo, index) => (
+      <TodoItem
+        key={todo.id}
+        todo={todo}
+        index={index + 1}
+        onToggle={() => onToggleTodo(todo.id)}
+        onDelete={() => onDeleteTodo(todo.id)}
+      />
+    ))}
+  </div>
+);

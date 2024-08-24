@@ -1,4 +1,6 @@
-export const TrashIcon = (props: any) => {
+import { SVGProps } from '@/types';
+
+export const TrashIcon = (props: SVGProps) => {
   return (
     <svg
       {...props}
