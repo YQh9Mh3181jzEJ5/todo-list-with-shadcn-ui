@@ -1,13 +1,11 @@
-import { Input } from '@/components/ui';
-import { SearchResults } from '@/features/todos/components';
-import { useTodos } from '@/features/todos/hooks';
-import { useState } from 'react';
-import { FaSearch } from 'react-icons/fa';
-
-
+import { Input } from "@/components/ui";
+import { SearchResults } from "@/features/todos/components";
+import { useTodos } from "@/features/todos/hooks";
+import { useState } from "react";
+import { FaSearch } from "react-icons/fa";
 
 export const SearchBar = () => {
-  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [searchTerm, setSearchTerm] = useState<string>("");
   const [showResults, setShowResults] = useState<boolean>(false);
   const { todos } = useTodos();
 
@@ -24,7 +22,7 @@ export const SearchBar = () => {
         value={searchTerm}
         onChange={(event) => {
           setSearchTerm(event.target.value);
-          setShowResults(event.target.value !== '');
+          setShowResults(event.target.value !== "");
         }}
       />
       {showResults && searchTerm && <SearchResults results={filteredTodos} />}

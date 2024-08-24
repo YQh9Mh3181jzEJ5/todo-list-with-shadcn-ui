@@ -1,4 +1,4 @@
-import { FcTodoList } from 'react-icons/fc';
+import { FcTodoList } from "react-icons/fc";
 
 export const Logo = () => (
   <a href="/" className="flex items-center gap-2">
