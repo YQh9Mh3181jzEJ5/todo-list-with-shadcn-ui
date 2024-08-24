@@ -8,7 +8,7 @@ interface TodoItemProps {
   index: number;
 }
 
-export const TodoItem = ({ todo, onToggle, onDelete, index }: TodoItemProps): JSX.Element => {
+export const TodoItem = ({ todo, onToggle, onDelete, index }: TodoItemProps) => {
   return (
     <Card className="hover:cursor-pointer dark:hover:bg-slate-800 hover:bg-slate-50 dark:border-slate-600">
       <CardContent className="grid grid-cols-[auto_1fr_auto_auto] items-center gap-2 p-4">
