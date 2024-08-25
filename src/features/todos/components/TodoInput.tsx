@@ -1,6 +1,6 @@
 import React from "react";
 import { Input } from "@/components/ui";
-import { MAX_TODO_LENGTH } from "@/constants";
+import { MAX_TODO_LENGTH } from "@/features/todos/constants";
 import { Button } from "@/components/ui/button";
 import { useCallback, useState } from "react";
 import { IoSend } from "react-icons/io5";

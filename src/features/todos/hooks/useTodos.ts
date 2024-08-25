@@ -1,15 +1,8 @@
 import { useAtom } from "jotai";
-import { todosAtom } from "../store/atoms/atoms";
-import { Todo } from "../types";
+import { TodosState } from "@/features/todos/types";
+import { todosAtom } from "@/features/todos/store/atoms";
 
-export function useTodos(): {
-  todos: Todo[];
-  addTodo: (text: string) => void;
-  toggleTodo: (id: string) => void;
-  deleteTodo: (id: string) => void;
-  activeTodosCount: number;
-  completedTodosCount: number;
-} {
+export function useTodos(): TodosState {
   const [todos, setTodos] = useAtom(todosAtom);
 
   const addTodo = (text: string) => {
