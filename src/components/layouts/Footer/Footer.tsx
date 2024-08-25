@@ -1,5 +1,5 @@
-import { TodoInput } from '@/features/todos/components';
-import { Copyright } from './Copyright';
+import { TodoInput } from "@/features/todos/components/TodoInput";
+import { Copyright } from "./Copyright";
 
 export const Footer = () => (
   <footer className="bg-card shadow-sm">

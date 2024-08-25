@@ -1,13 +1,13 @@
-import React from 'react';
-import { Input } from '@/components/ui';
-import { MAX_TODO_LENGTH } from '@/constants';
-import { Button } from '@/components/ui/button';
-import { useCallback, useState } from 'react';
-import { IoSend } from 'react-icons/io5';
-import { useTodos } from '../hooks';
+import React from "react";
+import { Input } from "@/components/ui";
+import { MAX_TODO_LENGTH } from "@/constants";
+import { Button } from "@/components/ui/button";
+import { useCallback, useState } from "react";
+import { IoSend } from "react-icons/io5";
+import { useTodos } from "../hooks";
 
-export const TodoInput = () => {
-  const [inputValue, setInputValue] = useState<string>('');
+export function TodoInput() {
+  const [inputValue, setInputValue] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const { todos, addTodo } = useTodos();
 
@@ -15,13 +15,13 @@ export const TodoInput = () => {
     (value: string) => {
       const trimmedValue = value.trim();
       if (!trimmedValue) {
-        return 'Todo cannot be empty';
+        return "Todo cannot be empty";
       }
       if (trimmedValue.length > MAX_TODO_LENGTH) {
         return `Character limit exceeded: ${trimmedValue.length}/${MAX_TODO_LENGTH}. Please shorten your todo.`;
       }
       if (todos.some((todo) => todo.text === trimmedValue)) {
-        return 'This todo already exists';
+        return "This todo already exists";
       }
       return null;
     },
@@ -38,7 +38,7 @@ export const TodoInput = () => {
     }
 
     addTodo(trimmedValue);
-    setInputValue('');
+    setInputValue("");
     setError(null);
   };
 
@@ -56,17 +56,13 @@ export const TodoInput = () => {
     [validateInput]
   );
 
-  // const hasError = error !== '';
-  // const isInputEmpty = inputValue.trim() === '';
-
   return (
     <div className="relative">
       <form onSubmit={handleSubmit} className="relative flex-grow">
         <Input
           type="text"
           placeholder="Add a new todo..."
-          className="pl-4 pr-32
-           py-8 text-lg truncate"
+          className="pl-4 pr-32 py-8 text-lg truncate"
           value={inputValue}
           onChange={handleInputChange}
           maxLength={MAX_TODO_LENGTH}
@@ -74,7 +70,9 @@ export const TodoInput = () => {
         <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center space-x-2 bg-background">
           <p
             className={`text-sm ${
-              inputValue.length > MAX_TODO_LENGTH ? 'text-red-500' : 'text-gray-500'
+              inputValue.length > MAX_TODO_LENGTH
+                ? "text-red-500"
+                : "text-gray-500"
             }`}
           >
             {inputValue.length}/{MAX_TODO_LENGTH}
@@ -85,7 +83,6 @@ export const TodoInput = () => {
             size="icon"
             onClick={handleAddTodo}
             aria-label="Add todo"
-            // disabled={hasError || isInputEmpty}
             className="disabled:cursor-not-allowed"
           >
             <IoSend className="text-muted-foreground h-4 w-4" />
@@ -100,4 +97,4 @@ export const TodoInput = () => {
       </form>
     </div>
   );
-};
+}

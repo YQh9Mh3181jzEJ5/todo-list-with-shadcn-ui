@@ -1,5 +1,5 @@
-import { Todo } from '../types/todo';
-import { TodoItem } from './TodoItem';
+import { Todo } from "../types/todo";
+import { TodoItem } from "./TodoItem";
 
 interface TodoListProps {
   todos: Todo[];
@@ -7,7 +7,11 @@ interface TodoListProps {
   onDeleteTodo: (id: string) => void;
 }
 
-export const TodoList = ({ todos, onToggleTodo, onDeleteTodo }: TodoListProps) => (
+export const TodoList = ({
+  todos,
+  onToggleTodo,
+  onDeleteTodo,
+}: TodoListProps) => (
   <div className="space-y-4">
     {todos.map((todo, index) => (
       <TodoItem

@@ -1,10 +1,10 @@
 import { Input } from "@/components/ui";
 import { SearchResults } from "@/features/todos/components";
-import { useTodos } from "@/features/todos/hooks";
+import { useTodos } from "@/features/todos/hooks/useTodos";
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
-export const SearchBar = () => {
+export function SearchBar() {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [showResults, setShowResults] = useState<boolean>(false);
   const { todos } = useTodos();
@@ -28,4 +28,4 @@ export const SearchBar = () => {
       {showResults && searchTerm && <SearchResults results={filteredTodos} />}
     </div>
   );
-};
+}

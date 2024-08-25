@@ -1,6 +1,6 @@
-import { Logo } from './Logo';
-import { SearchBar } from './SearchBar';
-import { UserMenu } from './UserMenu';
+import { Logo } from "./Logo";
+import { SearchBar } from "./SearchBar";
+import { UserMenu } from "./UserMenu";
 
 export const Header = () => (
   <header className="bg-card shadow">
