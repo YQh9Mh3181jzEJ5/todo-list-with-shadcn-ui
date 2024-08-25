@@ -67,7 +67,7 @@ export function TodoInput() {
           onChange={handleInputChange}
           maxLength={MAX_TODO_LENGTH}
         />
-        <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center space-x-2 bg-background">
+        <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-2 bg-background">
           <p
             className={`text-sm ${
               inputValue.length > MAX_TODO_LENGTH

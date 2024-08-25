@@ -24,6 +24,14 @@ export function useTodos(): TodosState {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
   };
 
+  const editTodo = (id: string, newText: string) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) =>
+        todo.id === id ? { ...todo, text: newText } : todo
+      )
+    );
+  };
+
   const activeTodosCount = todos.filter((todo) => !todo.completed).length;
   const completedTodosCount = todos.filter((todo) => todo.completed).length;
 
@@ -32,6 +40,7 @@ export function useTodos(): TodosState {
     addTodo,
     toggleTodo,
     deleteTodo,
+    editTodo,
     activeTodosCount,
     completedTodosCount,
   };
