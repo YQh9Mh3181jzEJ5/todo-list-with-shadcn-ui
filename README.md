@@ -2,11 +2,9 @@
 
 ## 概要
 
-![FireShot Capture 002 - Todo App - localhost](https://github.com/user-attachments/assets/fe0dba30-8230-444f-9dab-9078c2e2513b)
-
-![FireShot Capture 001 - Todo App - localhost](https://github.com/user-attachments/assets/9638d7ed-6584-415c-9b2f-a8d691836b04)
-
 このプロジェクトは、React と TypeScript を使用して開発されたモダンな Todo リストアプリケーションです。ユーザーフレンドリーなインターフェースと、タスク管理に役立つ機能を提供します。
+
+URL: https://todo-list-2024.vercel.app/
 
 ## 主な機能
 
@@ -15,6 +13,14 @@
 - アクティブなタスクと完了したタスクの分類表示
 - ダークモード対応
 - レスポンシブデザイン
+
+## スクリーンショット
+
+### Light Mode
+![FireShot Capture 001 - Todo App - localhost](https://github.com/user-attachments/assets/9638d7ed-6584-415c-9b2f-a8d691836b04)
+
+### Dark Mode
+![FireShot Capture 002 - Todo App - localhost](https://github.com/user-attachments/assets/fe0dba30-8230-444f-9dab-9078c2e2513b)
 
 ## 技術スタック
 
