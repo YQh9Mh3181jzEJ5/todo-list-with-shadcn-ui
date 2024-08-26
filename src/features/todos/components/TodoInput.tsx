@@ -11,8 +11,8 @@ export const TodoInput = () => {
   const [error, setError] = useState<string | null>(null);
   const { todos, addTodo } = useTodos();
 
-  const validateInput = (value: string): string | null => {
-    const trimmedValue = value.trim();
+  const validateInput = (inputTodoText: string): string | null => {
+    const trimmedValue = inputTodoText.trim();
     if (!trimmedValue) {
       return "Todo cannot be empty";
     }
@@ -47,9 +47,9 @@ export const TodoInput = () => {
   const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ): void => {
-    const newValue = event.target.value;
-    setInputValue(newValue);
-    setError(validateInput(newValue));
+    const newTodoText = event.target.value;
+    setInputValue(newTodoText);
+    setError(validateInput(newTodoText));
   };
 
   return (

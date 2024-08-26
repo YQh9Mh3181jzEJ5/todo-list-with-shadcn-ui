@@ -13,17 +13,17 @@ export const TodoTabContent = () => {
       <TabsContent value="Active">
         <TodoList
           todos={activeTodos}
-          onToggleTodo={toggleTodo}
-          onDeleteTodo={deleteTodo}
-          onEditTodo={editTodo}
+          toggleTodo={toggleTodo}
+          deleteTodo={deleteTodo}
+          editTodo={editTodo}
         />
       </TabsContent>
       <TabsContent value="Completed">
         <TodoList
           todos={completedTodos}
-          onToggleTodo={toggleTodo}
-          onDeleteTodo={deleteTodo}
-          onEditTodo={editTodo}
+          toggleTodo={toggleTodo}
+          deleteTodo={deleteTodo}
+          editTodo={editTodo}
         />
       </TabsContent>
     </div>

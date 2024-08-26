@@ -7,9 +7,9 @@ import { formatDate } from "@/lib";
 interface TodoItemProps {
   todo: Todo;
   index: number;
-  onToggle: () => void;
-  onDelete: () => void;
-  onEdit: (newText: string) => void;
+  toggleTodo: () => void;
+  deleteTodo: () => void;
+  editTodo: (neweditTodoext: string) => void;
 }
 
 interface IconButtonProps {
@@ -27,7 +27,7 @@ const IconButton = ({ onClick, ariaLabel, icon }: IconButtonProps) => (
 );
 
 const TodoItem = React.memo(
-  ({ todo, index, onToggle, onDelete, onEdit }: TodoItemProps) => {
+  ({ todo, index, toggleTodo, deleteTodo, editTodo }: TodoItemProps) => {
     const [isEditing, setIsEditing] = useState<boolean>(false);
     const [editText, setEditText] = useState<string>(todo.text);
     const inputRef = useRef<HTMLInputElement>(null);
@@ -43,9 +43,9 @@ const TodoItem = React.memo(
     }, []);
 
     const handleSave = useCallback((): void => {
-      onEdit(editText);
+      editTodo(editText);
       setIsEditing(false);
-    }, [onEdit, editText]);
+    }, [editTodo, editText]);
 
     const handleKeyDown = useCallback(
       (e: React.KeyboardEvent<HTMLInputElement>): void => {
@@ -90,7 +90,7 @@ const TodoItem = React.memo(
                     }
                   />
                   <IconButton
-                    onClick={onToggle}
+                    onClick={toggleTodo}
                     ariaLabel={
                       todo.completed ? "Mark as incomplete" : "Mark as complete"
                     }
@@ -101,7 +101,7 @@ const TodoItem = React.memo(
                     }
                   />
                   <IconButton
-                    onClick={onDelete}
+                    onClick={deleteTodo}
                     ariaLabel="Delete todo"
                     icon={<TrashIcon className={iconBaseStyle} />}
                   />

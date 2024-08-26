@@ -3,16 +3,16 @@ import TodoItem from "./TodoItem";
 
 interface TodoListProps {
   todos: Todo[];
-  onToggleTodo: (id: string) => void;
-  onDeleteTodo: (id: string) => void;
-  onEditTodo: (id: string, newText: string) => void;
+  toggleTodo: (id: string) => void;
+  deleteTodo: (id: string) => void;
+  editTodo: (id: string, newText: string) => void;
 }
 
 export const TodoList = ({
   todos,
-  onToggleTodo,
-  onDeleteTodo,
-  onEditTodo,
+  toggleTodo,
+  deleteTodo,
+  editTodo,
 }: TodoListProps) => (
   <div className="space-y-4">
     {todos.map((todo, index) => (
@@ -20,9 +20,9 @@ export const TodoList = ({
         key={todo.id}
         todo={todo}
         index={index + 1}
-        onToggle={() => onToggleTodo(todo.id)}
-        onDelete={() => onDeleteTodo(todo.id)}
-        onEdit={(newText: string) => onEditTodo(todo.id, newText)}
+        toggleTodo={() => toggleTodo(todo.id)}
+        deleteTodo={() => deleteTodo(todo.id)}
+        editTodo={(newText: string) => editTodo(todo.id, newText)}
       />
     ))}
   </div>
