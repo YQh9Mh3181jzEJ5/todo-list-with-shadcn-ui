@@ -2,6 +2,7 @@ import { useAtom } from "jotai";
 import { TodosState } from "@/features/todos/types";
 import { todosAtom } from "@/features/todos/store/atoms";
 import { useCallback, useMemo } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 export function useTodos(): TodosState {
   const [todos, setTodos] = useAtom(todosAtom);
@@ -10,14 +11,14 @@ export function useTodos(): TodosState {
     (text: string) => {
       setTodos((prevTodos) => [
         ...prevTodos,
-        { id: Date.now(), text, completed: false, createdAt: Date.now() },
+        { id: uuidv4(), text, completed: false, createdAt: Date.now() },
       ]);
     },
     [setTodos]
   );
 
   const toggleTodo = useCallback(
-    (id: number) => {
+    (id: string) => {
       setTodos((prevTodos) =>
         prevTodos.map((todo) =>
           todo.id === id ? { ...todo, completed: !todo.completed } : todo
@@ -28,14 +29,14 @@ export function useTodos(): TodosState {
   );
 
   const deleteTodo = useCallback(
-    (id: number) => {
+    (id: string) => {
       setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
     },
     [setTodos]
   );
 
   const editTodo = useCallback(
-    (id: number, newText: string) => {
+    (id: string, newText: string) => {
       setTodos((prevTodos) =>
         prevTodos.map((todo) =>
           todo.id === id ? { ...todo, text: newText } : todo
