@@ -1,39 +1,55 @@
 import { useAtom } from "jotai";
 import { TodosState } from "@/features/todos/types";
 import { todosAtom } from "@/features/todos/store/atoms";
+import { useCallback, useMemo } from "react";
 
 export function useTodos(): TodosState {
   const [todos, setTodos] = useAtom(todosAtom);
 
-  const addTodo = (text: string) => {
-    setTodos((prevTodos) => [
-      ...prevTodos,
-      { id: Date.now(), text, completed: false, createdAt: Date.now() },
-    ]);
-  };
+  const addTodo = useCallback(
+    (text: string) => {
+      setTodos((prevTodos) => [
+        ...prevTodos,
+        { id: Date.now(), text, completed: false, createdAt: Date.now() },
+      ]);
+    },
+    [setTodos]
+  );
 
-  const toggleTodo = (id: number) => {
-    setTodos((prevTodos) =>
-      prevTodos.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
-    );
-  };
+  const toggleTodo = useCallback(
+    (id: number) => {
+      setTodos((prevTodos) =>
+        prevTodos.map((todo) =>
+          todo.id === id ? { ...todo, completed: !todo.completed } : todo
+        )
+      );
+    },
+    [setTodos]
+  );
 
-  const deleteTodo = (id: number) => {
-    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
-  };
+  const deleteTodo = useCallback(
+    (id: number) => {
+      setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+    },
+    [setTodos]
+  );
 
-  const editTodo = (id: number, newText: string) => {
-    setTodos((prevTodos) =>
-      prevTodos.map((todo) =>
-        todo.id === id ? { ...todo, text: newText } : todo
-      )
-    );
-  };
+  const editTodo = useCallback(
+    (id: number, newText: string) => {
+      setTodos((prevTodos) =>
+        prevTodos.map((todo) =>
+          todo.id === id ? { ...todo, text: newText } : todo
+        )
+      );
+    },
+    [setTodos]
+  );
 
-  const activeTodosCount = todos.filter((todo) => !todo.completed).length;
-  const completedTodosCount = todos.filter((todo) => todo.completed).length;
+  const { activeTodosCount, completedTodosCount } = useMemo(() => {
+    const active = todos.filter((todo) => !todo.completed).length;
+    const completed = todos.filter((todo) => todo.completed).length;
+    return { activeTodosCount: active, completedTodosCount: completed };
+  }, [todos]);
 
   return {
     todos,
