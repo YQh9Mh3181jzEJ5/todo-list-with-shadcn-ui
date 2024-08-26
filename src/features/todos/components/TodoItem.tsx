@@ -8,7 +8,7 @@ interface TodoItemProps {
   index: number;
   onToggle: () => void;
   onDelete: () => void;
-  onEdit: (id: string, newText: string) => void;
+  onEdit: (newText: string) => void;
 }
 
 export function TodoItem({
@@ -18,9 +18,7 @@ export function TodoItem({
   onDelete,
   onEdit,
 }: TodoItemProps) {
-  // 編集モードの状態を管理
   const [isEditing, setIsEditing] = useState<boolean>(false);
-  // 編集中のテキストを管理
   const [editText, setEditText] = useState<string>(todo.text);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -30,15 +28,12 @@ export function TodoItem({
     }
   }, [isEditing]);
 
-  // 編集モードの切り替え
   const handleEdit = (): void => {
     setIsEditing(true);
   };
 
-  // 編集の保存
   const handleSave = (): void => {
-    console.log(editText);
-    onEdit(todo.id, editText);
+    onEdit(editText);
     setIsEditing(false);
   };
 
@@ -72,7 +67,6 @@ export function TodoItem({
               <FaSave className="w-5 h-5" />
             </Button>
           ) : (
-            // 通常モード時は編集ボタンを表示
             <Button onClick={handleEdit}>
               <FaEdit className="w-5 h-5" />
             </Button>

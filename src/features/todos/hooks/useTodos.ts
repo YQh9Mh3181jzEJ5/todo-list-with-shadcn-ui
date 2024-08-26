@@ -8,11 +8,11 @@ export function useTodos(): TodosState {
   const addTodo = (text: string) => {
     setTodos((prevTodos) => [
       ...prevTodos,
-      { id: Date.now().toString(), text, completed: false },
+      { id: Date.now(), text, completed: false },
     ]);
   };
 
-  const toggleTodo = (id: string) => {
+  const toggleTodo = (id: number) => {
     setTodos((prevTodos) =>
       prevTodos.map((todo) =>
         todo.id === id ? { ...todo, completed: !todo.completed } : todo
@@ -20,11 +20,11 @@ export function useTodos(): TodosState {
     );
   };
 
-  const deleteTodo = (id: string) => {
+  const deleteTodo = (id: number) => {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
   };
 
-  const editTodo = (id: string, newText: string) => {
+  const editTodo = (id: number, newText: string) => {
     setTodos((prevTodos) =>
       prevTodos.map((todo) =>
         todo.id === id ? { ...todo, text: newText } : todo
