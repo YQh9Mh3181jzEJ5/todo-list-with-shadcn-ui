@@ -2,33 +2,30 @@ import React from "react";
 import { Input } from "@/components/ui";
 import { MAX_TODO_LENGTH } from "@/features/todos/constants";
 import { Button } from "@/components/ui/button";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { IoSend } from "react-icons/io5";
 import { useTodos } from "../hooks";
 
-export function TodoInput() {
+export const TodoInput = () => {
   const [inputValue, setInputValue] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const { todos, addTodo } = useTodos();
 
-  const validateInput = useCallback(
-    (value: string) => {
-      const trimmedValue = value.trim();
-      if (!trimmedValue) {
-        return "Todo cannot be empty";
-      }
-      if (trimmedValue.length > MAX_TODO_LENGTH) {
-        return `Character limit exceeded: ${trimmedValue.length}/${MAX_TODO_LENGTH}. Please shorten your todo.`;
-      }
-      if (todos.some((todo) => todo.text === trimmedValue)) {
-        return "This todo already exists";
-      }
-      return null;
-    },
-    [todos]
-  );
+  const validateInput = (value: string): string | null => {
+    const trimmedValue = value.trim();
+    if (!trimmedValue) {
+      return "Todo cannot be empty";
+    }
+    if (trimmedValue.length > MAX_TODO_LENGTH) {
+      return `Character limit exceeded: ${trimmedValue.length}/${MAX_TODO_LENGTH}. Please shorten your todo.`;
+    }
+    if (todos.some((todo) => todo.text === trimmedValue)) {
+      return "This todo already exists";
+    }
+    return null;
+  };
 
-  const handleAddTodo = () => {
+  const handleAddTodo = (): void => {
     const trimmedValue = inputValue.trim();
     const validationError = validateInput(trimmedValue);
 
@@ -42,19 +39,18 @@ export function TodoInput() {
     setError(null);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     handleAddTodo();
   };
 
-  const handleInputChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const newValue = event.target.value;
-      setInputValue(newValue);
-      setError(validateInput(newValue));
-    },
-    [validateInput]
-  );
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    const newValue = event.target.value;
+    setInputValue(newValue);
+    setError(validateInput(newValue));
+  };
 
   return (
     <div className="relative">
@@ -88,7 +84,6 @@ export function TodoInput() {
             <IoSend className="text-muted-foreground h-4 w-4" />
           </Button>
         </div>
-
         {error && (
           <p className="text-red-500 text-sm absolute left-2 bottom-0 transform translate-y-[calc(100%+0.5rem)]">
             {error}
@@ -97,4 +92,4 @@ export function TodoInput() {
       </form>
     </div>
   );
-}
+};
