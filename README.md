@@ -75,4 +75,4 @@ src/
 
 ## ライセンス
 
-このプロジェクトは [MIT ライセンス](LICENSE) の下で公開されています。
+このプロジェクトは [MIT ライセンス](https://licenses.opensource.jp/MIT/MIT.html) の下で公開されています。
