@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { contactSchema, ContactFormData } from "../schemas/contactSchema";
-import { Button, Input } from "@/components/ui";
+import { Button, Input, Textarea } from "@/components/ui";
 
 export const ContactForm = () => {
   const {
@@ -44,12 +44,12 @@ export const ContactForm = () => {
         )}
       </div>
       <div>
-        <textarea
+        <Textarea
           {...register("message")}
           placeholder="メッセージ"
-          className={`w-full p-2 border rounded-md ${errors.message ? "border-red-500" : ""}`}
+          className={`w-full ${errors.message ? "border-destructive" : ""}`}
           rows={4}
-        ></textarea>
+        />
         {errors.message && (
           <p className="text-red-500 text-sm mt-1">{errors.message.message}</p>
         )}

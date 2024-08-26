@@ -57,7 +57,7 @@ export const TodoInput = () => {
       <form onSubmit={handleSubmit} className="relative flex-1">
         <Input
           type="text"
-          placeholder="Add a new todo..."
+          placeholder="Add a new ToDo..."
           className="pl-4 pr-32 py-8 text-lg truncate"
           value={inputValue}
           onChange={handleInputChange}

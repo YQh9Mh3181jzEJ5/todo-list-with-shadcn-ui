@@ -35,7 +35,7 @@ export function SearchBar() {
       <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 z-10" />
       <Input
         type="search"
-        placeholder="Search todos..."
+        placeholder="Search ToDos..."
         className="pl-10 pr-4 rounded-md"
         value={searchTerm}
         onChange={(event) => {
