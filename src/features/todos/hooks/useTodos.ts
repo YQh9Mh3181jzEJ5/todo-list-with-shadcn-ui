@@ -8,7 +8,7 @@ export function useTodos(): TodosState {
   const addTodo = (text: string) => {
     setTodos((prevTodos) => [
       ...prevTodos,
-      { id: Date.now(), text, completed: false },
+      { id: Date.now(), text, completed: false, createdAt: Date.now() },
     ]);
   };
 
