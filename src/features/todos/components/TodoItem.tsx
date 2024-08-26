@@ -78,7 +78,7 @@ export function TodoItem({
                   onKeyDown={handleKeyDown}
                 />
               ) : (
-                <span className="text-lg flex-grow">{todo.text}</span>
+                <p className="text-lg flex-1 flex items-center">{todo.text}</p>
               )}
               <div className="flex items-center gap-2">
                 <IconButton

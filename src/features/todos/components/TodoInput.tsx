@@ -58,7 +58,7 @@ export function TodoInput() {
 
   return (
     <div className="relative">
-      <form onSubmit={handleSubmit} className="relative flex-grow">
+      <form onSubmit={handleSubmit} className="relative flex-1">
         <Input
           type="text"
           placeholder="Add a new todo..."
